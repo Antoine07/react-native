@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <!-- Library -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        // Création de composant en créant des classes
+        class Note extends React.Component {
+
+            average( notes ) {
+
+                if( notes.length > 0 ){
+                    const sum = notes.reduce((curr, acc) => curr + acc ) ;
+
+                    return Math.floor( (sum / notes.length) * 100 ) / 100;
+                }
+
+            }
+
+            // la fonction qui monte dans le DOM les éléments avec les variables
+            render() {
+                const ELEMS = [{name : "Alan", age : 45, notes : [11, 12, 17]}, { name : "Sophie", age : 47, notes : [11, 12, 17]}, {name : "Thileli", age : 23, notes : [11, 12, 17, 19] }];
+                return (
+                    <div className="heading" >
+                        <ul>
+                           {/* Attention vous ne pouvez pas utiliser autre chose que map avec JSX dans le rendu */}
+                            {ELEMS.map((elem, i) => 
+                                <li key={i} > {elem.name} {elem.age} ans
+                                    Average : {this.average(elem.notes)}
+                                </li> 
+                            )}
+                        </ul>
+                    </div>
+                )
+            }
+        }
+
+        // Rendu dans le DOM
+        ReactDOM.render(
+            <Note />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>
