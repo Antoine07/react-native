@@ -187,6 +187,8 @@ const Hello = (props) => {
         <div className="heading" >
         {elems.map((elem, i) => {
 
+            // key permette d'identifier précisément dans le DOM les éléments
+            // repère pour React {} => pour afficher des variables dans le rendu
             return (
                 <p key={i}>{elem}</p>
             )
@@ -200,3 +202,14 @@ const Hello = (props) => {
 ## React dépend de deux structures de données importantes
 
 React dépend des collections **Map** et **Set** en JS. Ces collections sont basées sur un système de clé/valeur, elles sont utilisées pour des questions d'accès à des valeurs et d'optimisation. Un Set n'a pas de doublon possible par exemple. Et un map est une structure de données construite avec un système de clé/valeur.
+
+
+## Exercice 
+
+En utilisant l'exemple précedent et un map afficher le nom et l'age dans un fichier example_03.html
+
+```js
+
+const elems = [{name : "Alan", age : 45}, { name : "Sophie", age : 47}, {name : "Thileli", age : 23 }];
+
+```
