@@ -49,7 +49,17 @@ ReactDOM.render(
 
 ## 1. Exercice props
 
-Définissez une constante "messages" dans le composant App, qui contiendra des messages, puis créez un composant Messages et un autre composant Message qui affichera les messages se trouvant dans la constante. Récupérez la source dans le moodle.
+Définissez une constante "messages" dans le composant App, qui contiendra des messages, puis créez un composant Messages et un autre composant Message qui affichera les messages se trouvant dans la constante. Récupérez la source ci-dessous:
+
+```js
+ const MESSAGES = [
+        { message : "React JS" },
+        { message : "React Native" },
+        { message : "Angular" },
+        { message : "Symfony" },
+        { message : "MongoDB" },
+    ];
+```
 
 Vous pouvez en effet avoir un composant dans un composant. Les composants de React sont déclaratifs comme les balises HTML.
 
