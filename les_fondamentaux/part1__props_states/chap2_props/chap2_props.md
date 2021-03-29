@@ -75,6 +75,37 @@ Voici pour vous aider la hiérarchie des composants :
 
 **Indications** : créez trois classes dans le même fichier. Utilisez la source ex1_props.html du cours pour commencer. Et n'oubliez pas d'utiliser map pour parcourir les messages et les afficher.
 
+Exemples de composant dans un composant :
+
+```js
+class App extends React.Component{
+ 
+  render() {
+      return (
+         <div>
+            <Message content="je suis un message" />
+         </div>
+      )
+  }
+}
+
+class Message extends React.Component{
+
+  render() {
+      return (
+         <p>{this.props.content}</p>
+      )
+  }
+}
+
+ReactDOM.render(
+    // attribut cle/valeur == props
+    <App />,
+    document.getElementById('root')
+);
+```
+
+
 ## 2. Exercice Clock
 
 Pour faire cet exercice dans un fichier **ex2_clock.html** comme pour l'exercice précédent importez les dépendances React.
