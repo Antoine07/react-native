@@ -204,7 +204,7 @@ const Hello = (props) => {
 React dépend des collections **Map** et **Set** en JS. Ces collections sont basées sur un système de clé/valeur, elles sont utilisées pour des questions d'accès à des valeurs et d'optimisation. Un Set n'a pas de doublon possible par exemple. Et un map est une structure de données construite avec un système de clé/valeur.
 
 
-## Exercice 
+## Exercice 1
 
 En utilisant l'exemple précedent et un map afficher le nom et l'age dans un fichier example_03.html
 
@@ -213,3 +213,33 @@ En utilisant l'exemple précedent et un map afficher le nom et l'age dans un fic
 const elems = [{name : "Alan", age : 45}, { name : "Sophie", age : 47}, {name : "Thileli", age : 23 }];
 
 ```
+
+Dans la suite des exercices utilisez les classes voir le cours.
+
+## Exercice 2
+
+En utilisant l'exemple précedent et un map afficher le nom et l'age dans un fichier example_03.html
+
+```js
+
+const notes = [{note : 11}, { note : 19 }, {note  : 13 }];
+
+```
+
+1. Affichez dans un deuxième map les notes.
+
+2. Creéz une fonction moyenne et affichez la moyenne de chaque étudiant.
+
+## Exercice 3
+
+En utilisant l'exemple précedent et un map afficher le nom et l'age dans un fichier example_03.html
+
+```js
+
+const elems = [{name : "Alan", age : 45, notes : [11, 12, 17]}, { name : "Sophie", age : 47, notes : [11, 12, 17]}, {name : "Thileli", age : 23, notes : [11, 12, 17, 19] }];
+
+```
+
+1. Affichez dans un deuxième map les notes.
+
+2. Creéz une fonction moyenne et affichez la moyenne de chaque étudiant.
