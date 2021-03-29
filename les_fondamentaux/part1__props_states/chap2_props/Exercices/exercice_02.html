@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <!-- Library -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+    // sources des données externes  ici elle est globale
+    const STUDENTS = [
+        {name : "Alan", age : 45, notes : [11, 12, 17]}, 
+        { name : "Sophie", age : 47, notes : [11, 12, 17]}, 
+        {name : "Thileli", age : 23, notes : [11, 12, 17, 19] }
+    ];
+
+    class App extends React.Component{
+        
+        render() {
+            return (
+                <div className="main">
+                    <Students students={this.props.students} />
+                </div>
+            )
+        }
+    }
+
+    class Students extends React.Component{
+
+        render() {
+
+            if(this.props.students.length > 0 )
+                return (
+                    <div>
+                        {this.props.students.map((s, i ) => (
+                           // toujours placer vos éléments dans un div
+                            <div className="student">
+                                <p>Name : {s.name} age : {s.age} </p>
+                                <Notes notes={s.notes} />
+                            </div>
+                        ))}
+                    </div>
+                )
+            else 
+                return (
+                    <p>Aucun student</p>
+                )
+        }
+    }
+
+    class Notes extends React.Component{
+
+        average( notes ) {
+            if( notes.length > 0 ){
+                const sum = notes.reduce((curr, acc) => curr + acc ) ;
+
+                return Math.floor( (sum / notes.length) * 100 ) / 100;
+            }
+
+        }
+
+        render() {
+            return (
+                <p>Average: {this.average(this.props.notes)}</p>
+            )
+        }
+    }
+
+    // Rendu dans le DOM
+    ReactDOM.render(
+        <App students={STUDENTS} />,
+        document.getElementById('root')
+    );
+    </script>
+</body>
+
+</html>
