@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <!-- Library -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+    const Hello = (props) => {
+        const elems = [{name : "Alan", age : 45}, { name : "Sophie", age : 47}, {name : "Thileli", age : 23 }];
+        return (
+            <div className="heading" >
+            {elems.map((elem , i) => {
+
+                // key permette d'identifier précisément dans le DOM les éléments
+                // repère pour React {} => pour afficher des variables dans le rendu
+                return (
+                    <p key={i}>{elem.name} {elem.age}</p>
+                )
+            })}
+            </div>
+        )
+    }
+
+        // Rendu dans le DOM
+        ReactDOM.render(
+            <Hello  />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>
