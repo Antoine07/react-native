@@ -105,8 +105,15 @@ ReactDOM.render(
 );
 ```
 
+## 2. Exercices imbrication de composants 
 
-## 2. Exercice Clock
+Reprendre la structure des elems suivantes et créez un composant App un composant Student et un composant Notes.
+
+```js
+const ELEMS = [{name : "Alan", age : 45, notes : [11, 12, 17]}, { name : "Sophie", age : 47, notes : [11, 12, 17]}, {name : "Thileli", age : 23, notes : [11, 12, 17, 19] }];
+```
+
+## 3. Exercice Clock
 
 Pour faire cet exercice dans un fichier **ex2_clock.html** comme pour l'exercice précédent importez les dépendances React.
 
