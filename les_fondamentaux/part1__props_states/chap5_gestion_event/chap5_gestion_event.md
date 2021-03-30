@@ -91,6 +91,8 @@ class Button extends React.Component{
 
 **Deuxième solution avec la fonction fléchée :**
 
+Cette solution n'est pas à envisager car elle n'est pas conforme au classe. Nous la retrouverons dans l'approche fonctionnelle pour définir un composant.
+
 Rappelons qu'une fonction fléchée ne possède pas de this. Si vous appelez le this dans celle-ci, il se rapportera au this du contexte de définition de la fonction.
 
 ```js
