@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <style>
+        .special {
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            margin-top: 2%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        /*
+           Correction affichez les étoiles ligne par ligne : deux composants
+        */
+        const container = document.getElementById('root');
+
+        class Bar extends React.Component {
+
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    star : '',
+                    count : 20
+                }
+
+                this.interval = null;
+            }
+
+            draw(){
+                this.interval = setInterval(() => {
+                    this.setState({ star : '*' + this.state.star, count : this.state.count - 1 });
+                }, 500);
+            }
+
+            componentDidUpdate(prevProps, prevStates){
+
+                if( this.state.count === 0) clearInterval(this.interval);
+
+                if(this.props.progess !== prevProps.progess ){
+                    this.draw(); 
+
+                    console.log(this.props.progess, this.props.num);
+                  
+                }
+            }
+
+            componentDidMount() {
+                console.log(this.props.num);
+                if (this.props.num === 1) this.draw();
+            }
+           
+            render() {
+
+                return (
+                    <div className="container special" >
+                        {this.props.num } - {this.state.star}
+                    </div >
+                );
+            }
+        }
+
+        class App extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    number : 1
+                }
+
+                this.interval = null;
+            }
+
+            componentDidMount(){
+                this.interval = setInterval(() => {
+                    this.setState({ number : this.state.number + 1 });
+                }, 500 * 20);
+            }
+
+            componentDidUpdate(prevProps, prevStates){
+                if( this.state.number === 10) clearInterval(this.interval);
+            }
+
+            render() {
+
+                return (
+                    <div className="container">
+                        {[1,2,3,4,5,6,8,9,10].map((num, i) => <Bar key={i} progress={ num === this.state.number } num = { num} />)}
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <App />,
+            container
+        );
+
+    </script>
+</body>
+
+</html>
