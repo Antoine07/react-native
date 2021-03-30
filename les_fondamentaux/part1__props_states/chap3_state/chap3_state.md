@@ -61,7 +61,8 @@ class TestState extends React.Component {
 
                 // définition du state, un simple litteral
                 this.state = {
-                    count: 0
+                    count: 0,
+                    
                 };
 
             }
@@ -96,3 +97,6 @@ class TestState extends React.Component {
 Ré-implémentez l'horloge précédente que nous avons vue dans le chaptire sur les props, cette fois utilisez un state pour gérer le temps qui passe (h/m/s).
 
 
+## 2. Exercice Clock
+
+Affichez un compteur et une horloge dans la même page. Gérez l'état de ces deux éléments avec des propriétés différentes du state.
