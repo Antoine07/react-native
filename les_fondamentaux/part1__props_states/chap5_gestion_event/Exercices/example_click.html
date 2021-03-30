@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <!-- Library -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Button extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    count : 0
+                }
+
+                // pour expliquer le contexte à la fonction appelée dans le DOM
+                // vous devez le faire sinon vous perdez le contexte
+                this.click = this.click.bind(this);
+            }
+
+            click(){
+                console.log('count', this.state.count)
+                this.setState({ count : this.state.count + 1}) ;
+            }
+
+            render(){
+                const { count } = this.state;
+
+                return (
+                <div>
+                    <button name="Hello React" onClick={this.click}>Add + 1</button>
+                    <p>Counter : {count}</p>
+                </div>
+                )
+            }
+        }
+
+        // Rendu dans le DOM
+        ReactDOM.render(
+            <Button  />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>
