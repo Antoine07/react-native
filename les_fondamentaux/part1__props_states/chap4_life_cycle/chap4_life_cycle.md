@@ -48,7 +48,7 @@ componentWillUnmount(){
 
 ## 1. Exercice Clocks
 
-Créez deux composants (classes), la première App contiendra une horloge, c'est à dire un composant Clock. Dans le composant App vous allez gérer le démontage de l'horloge : au bout de 5 secondes l'horloge est démontée. En utilisant le cycle de vie trouvez la bonne manière d'implémenter le démarrage et l'arrêt de cette horloge. Vous ne supprimerez pas le container mais uniquement le composant Clock pour répondre à la problématique posée dans cet exercice.
+1. Créez deux composants (classes), la première App contiendra une horloge, c'est à dire un composant Clock. Dans le composant App vous allez gérer le démontage de l'horloge : au bout de 5 secondes l'horloge est démontée. En utilisant le cycle de vie trouvez la bonne manière d'implémenter le démarrage et l'arrêt de cette horloge. Vous ne supprimerez pas le container mais uniquement le composant Clock pour répondre à la problématique posée dans cet exercice.
 
 Hiérarchie des composants :
 
@@ -62,6 +62,8 @@ Hiérarchie des composants :
 h/m/s
 
 ```
+
+2. Faire une deuxième horloge qui apparait une fois que l'autre disparait. Celle-ci affiche maintenant un temps en retard. Si vous le souhaitez vous pouvez au bout d'un certain ré-afficher la bonne horloge et alterner l'affichage avec les deux horloges.
 
 ## Autres méthodes du Life Cycle
 
