@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+
+        .principal {
+            background-color: beige;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        class CLock extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    timer  : new Date
+                }
+
+                this.interval = null;
+            }
+
+            componentDidMount(){
+
+                this.interval = setInterval(
+                    () => {
+                        this.setState({ timer : new Date }) ;
+
+                        console.log(this.state.timer)
+                    }, 1000
+                );
+            }
+
+            componentWillUnmount(){
+                clearInterval(this.interval);
+            }
+
+            render() {
+                return (
+                    <div>
+                        <p>Horologe: {this.state.timer.toLocaleTimeString()} </p>
+                    </div>
+                );
+            }
+        }
+
+        class App extends React.Component {
+
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    life : true
+                }
+            
+                setTimeout(() => {
+                    this.setState({ life : false})
+                }, 5000);
+
+            }
+
+            render() {
+                if(this.state.life)
+                    return (
+                       <CLock />
+                    )
+                else 
+                    return (
+                        <p>Dead</p>
+                    )
+            }
+        }
+
+     
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+        );
+
+    </script>
+</body>
+
+</html>
