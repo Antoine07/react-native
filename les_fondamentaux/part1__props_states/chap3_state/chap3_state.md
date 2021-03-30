@@ -62,7 +62,7 @@ class TestState extends React.Component {
                 // définition du state, un simple litteral
                 this.state = {
                     count: 0,
-                    
+
                 };
 
             }
@@ -100,3 +100,5 @@ Ré-implémentez l'horloge précédente que nous avons vue dans le chaptire sur 
 ## 2. Exercice Clock
 
 Affichez un compteur et une horloge dans la même page. Gérez l'état de ces deux éléments avec des propriétés différentes du state.
+
+Arrêter le compteur si celui-ci arrive à 10. Il repartira alors de 1. Compteur cyclique.
