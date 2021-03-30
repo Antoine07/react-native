@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+
+        .principal {
+            background-color: beige;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class CLock extends React.Component {
+            constructor(props) {
+                super(props);
+
+                // state qui va changé de valeur 
+                this.state = {
+                    timer: new Date
+                };
+
+                setInterval(
+                    () => {
+                        // On est obligé de passer par la fonction setState pour ré-exécuter le render
+                        // met à jour le state => re-actualise le render avec la nouvelle valeur du state
+                        this.setState({ timer : new Date }) 
+                    }, 1000
+                )
+            }
+
+            render() {
+                return (
+                    <div>
+                        <p>Timer: {this.state.timer.toLocaleTimeString()} </p>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(
+            <CLock />,
+            document.getElementById('root')
+        );
+
+    </script>
+</body>
+
+</html>
