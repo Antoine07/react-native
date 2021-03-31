@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <!-- Library -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class App extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    phrase : "Bonjour tout le monde"
+                }
+
+                // pour expliquer le contexte à la fonction appelée dans le DOM
+                // vous devez le faire sinon vous perdez le contexte
+                this.click = this.click.bind(this);
+            }
+
+            click(){
+                this.setState({ phrase : this.state.phrase.split('').reverse().join('') }) ;
+            }
+
+            render(){
+                const { phrase } = this.state;
+
+                return (
+                <div>
+                    <button name="Hello React" onClick={this.click}>Reverse</button>
+                    <p>Phrase : {phrase}</p>
+                </div>
+                )
+            }
+        }
+
+        // Rendu dans le DOM
+        ReactDOM.render(
+            <App  />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>
