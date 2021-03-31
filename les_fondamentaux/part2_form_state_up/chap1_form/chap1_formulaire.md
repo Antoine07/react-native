@@ -45,6 +45,10 @@ class Form extends React.Component {
 
 ## 1. Exercice formulaire User
 
+Créez un formulaire qui ajoute une chaîne de caractères et l'affiche. Utilisez le code ci-dessus pour vous aidez.
+
+## 2. Exercice formulaire User
+
 Créez un formulaire pour ajouter à une liste user des utilisateurs, vous forcerez la saisie en majuscule dans le champ de saisie.
 
 Vérifiez que l'utilisateur n'existe pas déjà dans la liste, si l'utilisateur se trompe alors affichez un message d'avertissement.
