@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <style>
+        .special {
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            margin-top: 2%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const container = document.getElementById('root');
+        const COLUMN = 20;
+        const ROW = 10;
+
+        class MatrixStar extends React.Component{
+            constructor(props){
+                super(props); // on doit hériter des props du Component
+
+                this.state = {
+                    stars : [''],
+                    row : 0,
+                    column : 0
+                }
+            }
+
+            draw(){
+                 this.interval = setInterval(
+                    () => {
+                        const { row, column, stars } = this.state;
+
+                        // dès qu'on à a fini de tracer une ligne on crée un nouveau tableau
+                        if((column + 1)  % 20 === 0 ){
+                            stars.push(['']); 
+                        }
+
+                        stars[row] += '* '; // chaque ligne est une chaîne de caractères
+                            
+                        this.setState({
+                           stars,
+                           column : (column + 1)  % 20, // nombre d'étoiles par ligne
+                           row : ((column + 1)  % 20 === 0) ? row + 1 : row  // dès qu'on a tracé une ligne on passe à la suivante + 1
+                        })
+                    }, 100
+                );
+            }
+
+            // après que le premier render a été fait le DOM est connu
+            // on lance la fonction draw()
+            componentDidMount(){
+                this.draw();
+            }
+
+            // lorsque row est égale au nombre de ligne à tracer on arrête le setInterval
+            // row est égale à ROW condition d'arrêt, correspond pour nous au dernier passage dans le setInterval
+            componentDidUpdate(prevPros, prevStates){
+                if(this.state.row === ROW) {
+                    clearInterval(this.interval);
+                }
+            }
+
+            render(){
+                const { stars, row, column } = this.state;
+                const color = (row === ROW ) ? "palevioletred" : "black";
+                let [r,c] = [row + 1, column + 1];
+
+                // row est égale à 11 au dernier traçage on remet les pendules à l'heure ...
+                if(row === 10) {
+                    [r, c] = [ROW, COLUMN];
+                }
+
+                return (
+                    <div style={{width: 500, margin: 'auto', padding : 10 }}>
+                        <h1 style={{ textAlign : 'center' }} >{r}X{c}</h1>
+                        {stars.map((line, i) => (
+                            <div key={i} style={{color : color , textAlign : 'center' }}>{ line }</div>
+                        ))}
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <MatrixStar />,
+            container
+        );
+
+    </script>
+</body>
+
+</html>

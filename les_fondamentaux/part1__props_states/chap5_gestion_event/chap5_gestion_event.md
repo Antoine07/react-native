@@ -118,7 +118,17 @@ class Button extends React.Component{
 // ...
 ```
 
-## 1. Exercice Compteur
+## 1. Exercice inverser une chaine
+
+Soit la chaîne de caractères suivante affichez la dans le DOM et créez un bouton "reverse" pour inverser cette chaîne de caractères :
+
+```text
+
+          Bonjour le monde
+          [reverse]
+```
+
+## 2. Exercice Compteur
 
 Créez deux compteurs (composants) qui se déclenchent à l'aide d'un bouton **start**. Le premier compteur s'incrémente de +1, le deuxième compteur s'incrémente de +2. Vous pouvez jouer avec les props des composants pour fixer la valeur de l'incrémentation, chaque composant aura ainsi sa propre configuration.
 
