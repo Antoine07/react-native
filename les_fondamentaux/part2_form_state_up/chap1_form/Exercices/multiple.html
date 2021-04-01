@@ -43,7 +43,8 @@
 
             this.state = {
                 number : '', // saisir la donnée dans le champ input mutable
-                multiples : []
+                multiples : [],
+                message : ''
             }
 
             // pour récupérer le contexte de la classe une fois le composant monté dans le DOM
@@ -70,8 +71,31 @@
         handleSubmit(event){
             event.preventDefault(); // on bloque le fonctionnement du form par défaut qui envoie de la données SAP
             const { number } = this.state;
+            
             // algo
             const multiples = [];
+            
+            // si champ vide 
+            if(number.trim() === '' ){
+                this.setState({
+                    message : 'Attention votre champ est vide',
+                    multiples : multiples
+                })
+
+                return; // on arrête l'exécution des scripts => on sort de la méthode on ne fait pas ce qui suit
+            }
+
+            // On vérifie que c'est un entier 
+            if( parseInt(number)  !=  number ){
+
+                this.setState({
+                    message : `Attention ${number} n'est pas un entier`,
+                    multiples : multiples,
+                    number : ''
+                })
+
+                return;
+            }
 
             // TODO faire une fonction dans la classe
             let i = 1, multiple = 0;
@@ -89,17 +113,18 @@
         }
        
         render() {
-            const { number, multiples } = this.state;
+            const { number, multiples, message } = this.state;
 
             return (
                 <React.Fragment>
+                    { message !== '' && <p>{message} </p>}
                     <form onSubmit={this.handleSubmit}>
                         <label>Number: 
                             <input type="text" name="number" value={number} onChange={this.handleChange} />
                         </label>
                         <button>Calcul</button>
                     </form>
-                    <Multiple multiples={multiples} />
+                    { multiples.length > 0 && <Multiple multiples={multiples} /> }
                 </React.Fragment>
             );
         }
@@ -112,6 +137,7 @@
 
            return (
                <ul>
+                <li>Multiples</li>
                 {multiples.map((m, i) => <li key={i}>{m}</li>)}
                </ul>
            );
