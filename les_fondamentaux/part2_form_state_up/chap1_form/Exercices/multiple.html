@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <!-- Library -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+    const MAX_MULTIPLE = 100;
+    const ROOT = document.getElementById('root') ;
+
+    class App extends React.Component {
+       
+        render() {
+            return (
+                <div>
+                    <Form />
+                </div>
+            );
+        }
+    }
+
+    class Form extends React.Component {
+
+        constructor(props){
+            super(props);
+
+            this.state = {
+                number : '', // saisir la donnée dans le champ input mutable
+                multiples : []
+            }
+
+            // pour récupérer le contexte de la classe une fois le composant monté dans le DOM
+            this.handleChange = this.handleChange.bind(this);
+            this.handleSubmit = this.handleSubmit.bind(this);
+        }
+
+        // event l'objet JS input
+        handleChange(event){
+            console.log(event.target); // l'élément HTML
+            const { value, name } = event.target;
+            console.log(this.state, value, name);
+
+            // this.state.number = value;
+
+            // setState déclenche le render donc écrit la valeur saisie dans le value du input
+            // ex si on a tapé 1 il met 1 dans la value, puis si on tape 12 il écrase number par 12 
+            // puis remet 12 dans l'input
+            // this.setState({ number : value }); on utilisera la syntaxe plus rapide en JS suivante 
+            this.setState({ [name] : value}); 
+        }
+
+        // event c'est l'objet JS form 
+        handleSubmit(event){
+            event.preventDefault(); // on bloque le fonctionnement du form par défaut qui envoie de la données SAP
+            const { number } = this.state;
+            // algo
+            const multiples = [];
+
+            // TODO faire une fonction dans la classe
+            let i = 1, multiple = 0;
+            while(true){
+                multiple = i * parseInt(number) ;
+                
+                // faire une constante pour la valeur max pour éviter le hardcoding
+                if( multiple >= MAX_MULTIPLE || multiple === 0 ) break;
+
+                multiples.push( multiple );
+                i = i + 1;
+            }
+
+            this.setState({ multiples : multiples, number : '' });
+        }
+       
+        render() {
+            const { number, multiples } = this.state;
+
+            return (
+                <React.Fragment>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>Number: 
+                            <input type="text" name="number" value={number} onChange={this.handleChange} />
+                        </label>
+                        <button>Calcul</button>
+                    </form>
+                    <Multiple multiples={multiples} />
+                </React.Fragment>
+            );
+        }
+   }
+
+   class Multiple extends React.Component {
+       
+       render() {
+           const { multiples } = this.props;
+
+           return (
+               <ul>
+                {multiples.map((m, i) => <li key={i}>{m}</li>)}
+               </ul>
+           );
+       }
+   }
+
+    // Rendu dans le DOM
+    ReactDOM.render(
+        <App  />,
+        ROOT
+    );
+    </script>
+</body>
+
+</html>
