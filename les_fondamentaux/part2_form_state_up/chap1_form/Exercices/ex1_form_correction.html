@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+
+        .principal {
+            background-color: beige;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Form extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    user: '',
+                    users: [],
+                    message : ''
+                };
+
+                this.handleChange = this.handleChange.bind(this);
+                this.handleSubmit = this.handleSubmit.bind(this);
+            }
+
+            handleChange(event) {
+
+                // on récupère la valeur du champ input et le nom ici user
+                const { value, name } = event.target;
+
+                this.setState({ 
+                    // syntaxe JS [name] permettent de récupérer la valeur du nom du champ comme clé de votre state ici user
+                    [name]: value.toUpperCase(),
+                    message : ''
+                });
+            }
+
+            handleSubmit(event) {
+                event.preventDefault();
+
+                const { user, users } = this.state; 
+
+                if(user.trim() === ''){
+                    this.setState({
+                        message : `Attention votre champ est vide`,
+                        user : ''
+                    });
+
+                    return;
+                }
+
+                if( users.find( u => u === user) ){
+                    this.setState({
+                        message : `Attention l'utilisateur : ${user} existe déjà dans la liste`
+                    });
+
+                    return;
+                }
+
+                // lecture des users avec push dans le tableau attention le tableau renvoi 1 si il a 
+                // réussit à pusher la valeur
+                this.state.users.push(this.state.user);
+
+                this.setState({
+                    users: this.state.users,
+                    user : '',
+                    message : 'Merci pour votre ajout'
+                });
+
+            }
+
+            render() {
+                const { user, users, message } = this.state;
+
+                return (
+                    <React.Fragment>
+                        <form onSubmit={this.handleSubmit}>
+                            <label>
+                                User : 
+                            <input type="text" value={user} name="user" onChange={this.handleChange} />
+                            </label>
+                            <input type="submit" value="Add user" />
+                        </form>
+                        { message !== '' && <p>{message}</p> }
+                        <UserList users={users} />
+                    </React.Fragment>
+                );
+            }
+        }
+
+        class UserList extends React.Component {
+
+
+            render() {
+
+                const { users } = this.props;
+
+                if (users.length > 0) {
+                    return (
+                        <div className="list-users">
+                            {users.map((user, i) => <p key={i}>{user}</p>  )}
+                        </div>
+                    )
+                }
+
+                return (
+                    <p>Pour l'instant pas de user ...</p>
+                )
+                
+            }
+        }
+
+        class App extends React.Component {
+
+            render() {
+
+                return (
+                    <div className="container">
+                        <h1>Formulaire de saisi des utilisateurs </h1>
+                        <Form />
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>
