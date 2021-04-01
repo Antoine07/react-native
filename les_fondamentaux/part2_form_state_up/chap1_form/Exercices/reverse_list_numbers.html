@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <!-- Library -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+    const MAX_MULTIPLE = 100;
+    const ROOT = document.getElementById('root') ;
+
+    class App extends React.Component {
+       
+        render() {
+            return (
+                <div>
+                    <Form />
+                </div>
+            );
+        }
+    }
+
+    class Form extends React.Component {
+
+        constructor(props){
+            super(props);
+
+            this.state = {
+                number : '', // saisir la donnée dans le champ input mutable
+                numbers : [],
+                message : ''
+            }
+
+            this.handleChange = this.handleChange.bind(this);
+            this.handleSubmit = this.handleSubmit.bind(this);
+            this.reverse = this.reverse.bind(this);
+        }
+
+        handleChange(event){
+            const { value, name } = event.target;
+
+            this.setState({ [name] : value}); 
+        }
+
+        handleSubmit(event){
+            event.preventDefault(); 
+            const { number } = this.state;
+            
+            if(number.trim() === '' ){
+                this.setState({
+                    message : 'Attention votre champ est vide',
+                    numbers : numbers
+                })
+
+                return; 
+            }
+
+            // On vérifie que c'est un entier 
+            if( parseInt(number)  !=  number ){
+
+                this.setState({
+                    message : `Attention ${number} n'est pas un entier`,
+                    numbers : numbers,
+                    number : ''
+                })
+
+                return;
+            }
+
+            this.state.numbers.push(number);
+
+            this.setState({ numbers : this.state.numbers, number : '' });
+        }
+
+        reverse(){
+
+            this.setState({
+                numbers : this.state.numbers.reverse()
+            })
+        }
+       
+        render() {
+            const { number, numbers, message } = this.state;
+
+            return (
+                <React.Fragment>
+                    { message !== '' && <p>{message} </p>}
+                    <p><button onClick={this.reverse}>Reverse</button></p>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>Number: 
+                            <input type="text" name="number" value={number} onChange={this.handleChange} />
+                        </label>
+                        <button>Add</button>
+                    </form>
+                    { numbers.length > 0 && <Number numbers={numbers} /> }
+                </React.Fragment>
+            );
+        }
+   }
+
+   class Number extends React.Component {
+       
+       render() {
+           const { numbers } = this.props;
+
+           return (
+               <ul>
+                <li>Numbers</li>
+                {numbers.map((m, i) => <li key={i}>{m}</li>)}
+               </ul>
+           );
+       }
+   }
+
+    // Rendu dans le DOM
+    ReactDOM.render(
+        <App  />,
+        ROOT
+    );
+    </script>
+</body>
+
+</html>
