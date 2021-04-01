@@ -208,3 +208,23 @@ Indication pour les selects dans un formulaire en React :
   <option value="0">Aucune</option>
 </select>
 ```
+
+## 3. Exercice 
+
+Créez un champ texte pour enregistrer des valeurs entières. Affichez ces valeurs et implémentez un bouton pour inverser la liste des entiers.
+
+```text
+
+[reverse]   <-- bouton permettant d'inverser la liste
+
+number : []
+
+[Add]
+
+----- 
+9
+7
+11
+10
+
+```
