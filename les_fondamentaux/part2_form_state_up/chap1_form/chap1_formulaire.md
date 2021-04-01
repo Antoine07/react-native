@@ -216,6 +216,7 @@ Créez un champ texte pour enregistrer des valeurs entières. Affichez ces valeu
 ```text
 
 [reverse]   <-- bouton permettant d'inverser la liste
+[order croissant]   <-- bouton permettant ordonner par ordre croissant. avec Toggle décroissant/croissant
 
 number : []
 
@@ -228,3 +229,4 @@ number : []
 10
 
 ```
+
