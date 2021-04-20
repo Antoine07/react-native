@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+
+        .principal {
+            background-color: beige;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const Count = (props) => {
+            
+            const [count, setCount] = React.useState(0); // une valeur par défaut
+
+            // au démontage afficher un montage utiliser le cours pour mettre en place celui-ci
+
+            return (
+                <React.Fragment>
+                    <h1>{props.title}</h1>
+                    <p>{count1}, {count2}</p>
+                    <button onClick={ () => setCount(count + 1)} >
+                        click me
+                    </button>
+                
+                </React.Fragment>
+            )
+        }
+
+        const App = (props) => {
+            const [show, setShow] = React.useState(true); // une valeur par défaut
+
+            React.useEffect(() => {
+                setTimeout(() => {
+                    setShow(false);
+                }, 1000);
+            }, []);
+
+
+            return (
+                <React.Fragment>
+                    <p>Montage de Count</p>
+                    <Count />
+                </React.Fragment>
+            )
+        }
+
+        ReactDOM.render(
+            <App title="Example state" />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>
