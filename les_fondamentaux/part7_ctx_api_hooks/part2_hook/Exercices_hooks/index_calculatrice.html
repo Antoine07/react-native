@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+
+        .principal {
+            background-color: beige;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const initialState = {
+            number1: '', // controle
+            number2: '',
+            result: 0,
+            message : ''
+        }
+        const reducer = (state, action) => {
+            switch (action.type) {
+
+                case "NUMBER1":
+
+                    return {
+                        ...state,
+                        number1 : action.value,
+                        message : ''
+                    }
+
+                case "ADD":
+
+                    if(state.number1.trim() === ''){
+
+                        return {
+                            ...state,
+                            message : 'Attention votre champ est vide'
+                        }
+                    }
+
+                    return {
+                        ...state,
+                        result : state.number1,
+                        message : ''
+                    }
+            
+                default:
+                    return state;
+            }
+        }
+
+        const App = (props) => {
+            const [state, dispatch] = React.useReducer(reducer, initialState);
+
+            const handleAdd = () => {
+                dispatch({type : "ADD" })
+            }
+
+            return (
+                <div>
+                    {state.message && <p style={{color: "red"}}>{state.message}</p>}
+                    <label>Nombre :
+                        <input type="text" name="number1" onChange={(e) => dispatch({ type: "NUMBER1", value : e.target.value })} value={state.number1} />
+                    </label>
+                    <button onClick={handleAdd}>
+                        ADD 
+                    </button>
+                    { state.result !== 0 && <p>{state.result}</p>}
+                </div>
+            )
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>
