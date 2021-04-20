@@ -25,20 +25,36 @@
     <script type="text/babel">
 
         const App = (props) => {
-            // Hook state 
-            // 1/ la variable qui définie un state et 2/ la fonction de mise à jour du state
-            // count == state,  setCount == setState
-            const [count, setCount] = React.useState(0); // une valeur par défaut
-            const [count2, setCount2] = React.useState(0); // une valeur par défaut
+            const [show, setShow] = React.useState(true); 
 
-            // Au montage la première fois.
-            // Et dès que le state change. ici count ou count2 change
             React.useEffect(() => {
-                setTimeout(() => {
-                console.log(`First message: You clicked ${count} ${count2} times`);
-                }, 1000);
-            });
+                setTimeout(() => setShow(false), 5000);
+            }, []);
 
+            return(
+                <React.Fragment>
+                    <p>App</p>
+                    {show && (
+                        <Counter />
+                    )}
+                </React.Fragment>
+            )
+
+        }
+
+        const Counter = (props) => {
+         
+            const [count, setCount] = React.useState(0); 
+            const [count2, setCount2] = React.useState(0); 
+
+            React.useEffect(() => {
+                console.log('mount', count, count2);
+
+                return () => {
+                    console.log('nettoyage', count, count2);
+                }
+            }, [count]); // watcher
+        
             return (
                 <React.Fragment>
                     <h1>{props.title}</h1>
