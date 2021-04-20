@@ -400,7 +400,8 @@ const reducer = (state, action) => {
 
   switch (action.type) {
     case 'incr':
-      return {count: state.count + 1};
+      const value = action.value ;
+      return {count: state.count + value};
     case 'decr':
       return {count: state.count - 1};
     default:
@@ -413,7 +414,7 @@ function Counter() {
   return (
     <React.Fragment>
       Counter : {state.count}
-      <button onClick={() => dispatch({type: 'decr'})}>-</button>
+      <button onClick={() => dispatch({type: 'decr', value : 1})}>-</button>
       <button onClick={() => dispatch({type: 'incr'})}>+</button>
     </React.Fragment>
   );
