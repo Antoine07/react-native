@@ -27,18 +27,20 @@
         const initialState = {
             number1: '', // controle
             number2: '',
-            result: 0,
+            result: null,
             message : ''
         }
         const reducer = (state, action) => {
             switch (action.type) {
 
+                case "NUMBER2":
                 case "NUMBER1":
 
                     return {
                         ...state,
-                        number1 : action.value,
-                        message : ''
+                        [action.name] : action.value,
+                        message : '',
+                        result : null
                     }
 
                 case "ADD":
@@ -47,14 +49,24 @@
 
                         return {
                             ...state,
-                            message : 'Attention votre champ est vide'
+                            message : 'Attention votre champ est vide',
+                        }
+                    }
+
+                    if(parseFloat(state.number1) != state.number1 || parseFloat(state.number2) != state.number2 ){
+
+                        return {
+                            ...state,
+                            message : 'Attention une des valeurs n est pas un numerique'
                         }
                     }
 
                     return {
                         ...state,
-                        result : state.number1,
-                        message : ''
+                        result : parseFloat(state.number1) + parseFloat(state.number2),
+                        message : '',
+                        number1 : '',
+                        number2: ''
                     }
             
                 default:
@@ -72,9 +84,16 @@
             return (
                 <div>
                     {state.message && <p style={{color: "red"}}>{state.message}</p>}
-                    <label>Nombre :
-                        <input type="text" name="number1" onChange={(e) => dispatch({ type: "NUMBER1", value : e.target.value })} value={state.number1} />
-                    </label>
+                    <div>
+                        <label>Nombre1 :
+                            <input type="text" name="number1" onChange={(e) => dispatch({ type: "NUMBER1", value : e.target.value, name : e.target.name })} value={state.number1} />
+                        </label>
+                    </div>
+                    <div>
+                        <label>Nombre 2:
+                            <input type="text" name="number2" onChange={(e) => dispatch({ type: "NUMBER2", value : e.target.value, name : e.target.name  })} value={state.number2} />
+                        </label>
+                    </div>
                     <button onClick={handleAdd}>
                         ADD 
                     </button>
