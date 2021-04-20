@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+
+        .principal {
+            background-color: beige;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        let interval = null ;
+
+        const Counter = () => {
+            const [count, setCount] = React.useState(0);
+            const [active, setActive] = React.useState(false);
+
+            React.useEffect(() => {
+                
+                if(active) 
+                {
+                    interval = setInterval(() => {
+                        setCount( count => count + 1 );
+                    }, 1000)
+                }
+
+                return () => {
+                    console.log('nettoyage');
+                    clearInterval(interval);
+                }
+    
+            }, [active]);
+
+            const handleStartStop = () => {
+                setActive(!active);
+            }
+
+            return (
+                <React.Fragment>
+                    <p>Counter : {count}</p>
+                    <button onClick={handleStartStop} >
+                        start/stop
+                    </button>
+                </React.Fragment>
+            )
+        }
+
+        const App = (props) => {
+
+            const [show, setShow] = React.useState(false);
+
+            const handleToggle = () => {
+                setShow(!show);
+            }
+           
+            return (
+                <React.Fragment>
+                    <h1>{props.title}</h1>
+                    <button onClick={handleToggle} >
+                            toggle Counter
+                    </button>
+                    {show && <Counter />}
+                </React.Fragment>
+            )
+        }
+
+        ReactDOM.render(
+            <App title="Example state" />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>
