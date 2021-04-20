@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .heading {
+            color: purple;
+        }
+
+        .principal {
+            background-color: beige;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const App = (props) => {
+            // Hook state 
+            // 1/ la variable qui définie un state et 2/ la fonction de mise à jour du state
+            // count == state,  setCount == setState
+            const [count1, setCount] = React.useState(0); // une valeur par défaut
+            const [count2, setCount2] = React.useState(0); // une valeur par défaut
+
+            React.useEffect(() => {
+                console.log("Montage uniquement");
+            }, []); // watcher aucun state
+
+            // Au montage la première fois.
+            // Et dès que le state count1 change
+            React.useEffect(() => {
+                setTimeout(() => {
+                console.log(`First message: You clicked ${count1}  times`);
+                }, 1000);
+            }, [count1]);
+
+            // Au montage la première fois.
+            // Et dès que le state count2 change
+            React.useEffect(() => {
+                setTimeout(() => {
+                console.log(`Second message: You clicked ${count2} times`);
+                }, 1000);
+            }, [count2]);
+
+            return (
+                <React.Fragment>
+                    <h1>{props.title}</h1>
+                    <p>{count1}, {count2}</p>
+                    <button onClick={ () => setCount(count1 + 1)} >
+                        click me
+                    </button>
+                    <button onClick={ () => setCount2(count2 + 1)} >
+                        click me
+                    </button>
+                </React.Fragment>
+            )
+        }
+
+        ReactDOM.render(
+            <App title="Example state" />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>
