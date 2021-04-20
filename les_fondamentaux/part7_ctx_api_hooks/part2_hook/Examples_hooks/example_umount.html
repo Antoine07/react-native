@@ -30,10 +30,18 @@
 
             // au démontage afficher un montage utiliser le cours pour mettre en place celui-ci
 
+            React.useEffect(() => {
+
+                return () => {
+                    console.log("démonté !!!!!");
+                }
+
+            }, [count]);
+
             return (
                 <React.Fragment>
                     <h1>{props.title}</h1>
-                    <p>{count1}, {count2}</p>
+                    <p>{count}</p>
                     <button onClick={ () => setCount(count + 1)} >
                         click me
                     </button>
@@ -48,14 +56,16 @@
             React.useEffect(() => {
                 setTimeout(() => {
                     setShow(false);
-                }, 1000);
+                }, 4000);
             }, []);
 
 
             return (
                 <React.Fragment>
                     <p>Montage de Count</p>
-                    <Count />
+                    {show && (
+                        <Count />
+                    )}
                 </React.Fragment>
             )
         }
