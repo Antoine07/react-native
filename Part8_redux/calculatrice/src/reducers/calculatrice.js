@@ -4,7 +4,7 @@ const stateInit = {
     numbers : [1, 2, 8, 7 ],
     number1 : '', // le contrôle de l'élément ajouter dans le reducer
     number2 : '', // le contrôle de l'élément ajouter dans le reducer
-
+    result : ''
 }
 
 // algo
@@ -26,11 +26,19 @@ const reducer = (state = stateInit, action ) =>{
         
         case "SET_NUMBER":
 
-            const { number, name } = action;
+            const { value, name } = action;
 
             return {
                 ...state,
-                [name] : number
+                [name] : value
+            }
+
+        case "ADD":
+            const { number1, number2 } = state;
+
+            return {
+                ...state,
+                result : parseFloat(number1) + parseFloat(number2)
             }
 
         default: 
