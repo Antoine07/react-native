@@ -20,6 +20,11 @@ const App = () => {
      )}
      <button onClick={() => dispatch({type : "SHUFFLE"}) } >Afficher les nombres</button>
      {/** affichez simplement les nombres du store ul li */}
+
+     <div>
+       {/** onChange se fait maintenant dans le reducer algo  */}
+       <input type="text" name="number" onChange={() =>console.log('change') } />
+     </div>
     </div>
   );
 }
