@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 const App = () => {
 
   // Hooks de Redux
-  const { numbers, number1, number2, result } = useSelector(state => state); // lire le store
+  const { numbers, number1, number2, result, message } = useSelector(state => state); // lire le store
   const dispatch = useDispatch(); // lancer une action dans le reducer Redux
 
   const handleChange = e => {
@@ -39,12 +39,20 @@ const App = () => {
        <input type="text" name="number2" onChange={handleChange} value={number2} />
         {number2}
       </div>
-
       <div>
-        <button onClick={() => dispatch({type: "ADD" })}>ADD</button>
+        <button onClick={() => dispatch({ type: "ADD" })}>ADD</button>
+      </div>
+      <div>
+        <button onClick={() => dispatch({ type: "MULTIPLICATION" })}>MULTIPLICATION</button>
+      </div>
+      <div>
+        <button onClick={() => dispatch({ type: "RESET" })}>RESET</button>
       </div>
       { result && (
         <p>{result}</p>
+      )}
+      { message && (
+        <p>{message}</p>
       )}
     </div>
   );

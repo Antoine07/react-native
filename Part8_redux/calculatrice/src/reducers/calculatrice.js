@@ -4,7 +4,8 @@ const stateInit = {
     numbers : [1, 2, 8, 7 ],
     number1 : '', // le contrôle de l'élément ajouter dans le reducer
     number2 : '', // le contrôle de l'élément ajouter dans le reducer
-    result : ''
+    result : '',
+    message : ''
 }
 
 // algo
@@ -25,20 +26,47 @@ const reducer = (state = stateInit, action ) =>{
             }
         
         case "SET_NUMBER":
-
             const { value, name } = action;
 
             return {
                 ...state,
-                [name] : value
+                [name] : value,
+                message : ''
             }
 
+        case "MULTIPLICATION":
         case "ADD":
             const { number1, number2 } = state;
+            const { type  } = action;
+
+            // trim retire les espaces avant ou après
+            if( number1.trim() === '' || number2.trim() === ''){
+
+                return {
+                    ...state,
+                    message : "Attention un/les champ(s) est/sont vides"
+                }
+            }
+
+            if( isNaN( parseFloat(number1) ) ||  isNaN( parseFloat(number2) ) ){
+
+                return {
+                    ...state,
+                    message :  `Attention le type de l'une de vos variables n'est pas bon, ${number1} ${number2}`
+                }
+            }
 
             return {
                 ...state,
-                result : parseFloat(number1) + parseFloat(number2)
+                result : type === 'ADD' ? parseFloat(number1) + parseFloat(number2) : parseFloat(number1)  * parseFloat(number2),
+                message : 'Voici votre résultat'
+            }
+
+        case "RESET":
+
+            return {
+                ...state,
+                ...stateInit
             }
 
         default: 
