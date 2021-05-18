@@ -2,7 +2,9 @@
 // source de vérité
 const stateInit = {
     numbers : [1, 2, 8, 7 ],
-    number : '' // le contrôle de l'élément ajouter dans le reducer
+    number1 : '', // le contrôle de l'élément ajouter dans le reducer
+    number2 : '', // le contrôle de l'élément ajouter dans le reducer
+
 }
 
 // algo
@@ -21,7 +23,15 @@ const reducer = (state = stateInit, action ) =>{
                 ...state,
                 numbers : numbers
             }
+        
+        case "SET_NUMBER":
 
+            const { number, name } = action;
+
+            return {
+                ...state,
+                [name] : number
+            }
 
         default: 
             return state;

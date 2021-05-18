@@ -8,9 +8,15 @@ import { useSelector, useDispatch } from 'react-redux';
 const App = () => {
 
   // Hooks de Redux
-  const { numbers } = useSelector( state => state ); // lire le store
+  const { numbers, number1, number2  } = useSelector( state => state ); // lire le store
   const dispatch = useDispatch(); // lancer une action dans le reducer Redux
 
+  const handleChange = e => {
+    const { name, value } = e.target;
+
+    dispatch({type:"SET_NUMBER", name, value }) ;
+  }
+ 
   return (
     <div className="App">
      { numbers.length > 0 && (
@@ -23,7 +29,13 @@ const App = () => {
 
      <div>
        {/** onChange se fait maintenant dans le reducer algo  */}
-       <input type="text" name="number" onChange={() =>console.log('change') } />
+       Number 1 :
+       <input type="text" name="number1" onChange={handleChange} value={number1} />
+     </div>
+     <div>
+       {/** onChange se fait maintenant dans le reducer algo  */}
+       Number 2 :
+       <input type="text" name="number2" onChange={ handleChange }  value={number2} />
      </div>
     </div>
   );
