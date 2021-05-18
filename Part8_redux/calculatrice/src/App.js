@@ -13,10 +13,12 @@ const App = () => {
 
   return (
     <div className="App">
-      {/** dans le dispatch lancer votre action qui modifiera l'ordre d'affichage 
-       * de vos numbers
-       */}
-     <button onClick={() => dispatch({}) } >Afficher les nombres</button>
+     { numbers.length > 0 && (
+        <ul>
+          { numbers.map((number, i) => <li key={i}>{number}</li>) }
+        </ul>
+     )}
+     <button onClick={() => dispatch({type : "SHUFFLE"}) } >Afficher les nombres</button>
      {/** affichez simplement les nombres du store ul li */}
     </div>
   );
