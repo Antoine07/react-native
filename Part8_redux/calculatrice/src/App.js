@@ -3,23 +3,17 @@ import './App.css';
 
 // importer le store et les actions
 
-function App() {
+import { useSelector, useDispatch } from 'react-redux';
+
+const App = () => {
+
+  const { numbers } = useSelector( state => state ); // lire le store
+  const dispatch = useDispatch(); // lancer une action dans le reducer Redux
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <button>Afficher les nombres</button>
+     {/** affichez simple les nombres du store */}
     </div>
   );
 }
