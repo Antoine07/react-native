@@ -1,3 +1,4 @@
+import { SHUFFLE, SET_NUMBER, MULTIPLICATION, ADD, RESET } from "../constants/actions";
 
 // source de vérité
 const stateInit = {
@@ -13,7 +14,7 @@ const reducer = (state = stateInit, action ) =>{
 
     switch(action.type){
 
-        case "SHUFFLE":
+        case SHUFFLE:
             const numbers = [ ...state.numbers ] ;
             // astuce pour mélanger des nombres dans un tableau
             // cela joue sur l'algorithme de tri de la fonction sort
@@ -25,8 +26,10 @@ const reducer = (state = stateInit, action ) =>{
                 numbers : numbers
             }
         
-        case "SET_NUMBER":
-            const { value, name } = action;
+        case SET_NUMBER:
+            const { value, name } = action.payload;
+
+            console.log(action)
 
             return {
                 ...state,
@@ -34,8 +37,8 @@ const reducer = (state = stateInit, action ) =>{
                 message : ''
             }
 
-        case "MULTIPLICATION":
-        case "ADD":
+        case MULTIPLICATION:
+        case ADD:
             const { number1, number2 } = state;
             const { type  } = action;
 
@@ -62,7 +65,7 @@ const reducer = (state = stateInit, action ) =>{
                 message : 'Voici votre résultat'
             }
 
-        case "RESET":
+        case RESET:
 
             return {
                 ...state,
