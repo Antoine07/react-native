@@ -423,6 +423,8 @@ Créez un champ centré permettant de saisir une chaine de caractères. Affichez
 
 5 5 1
 
+Maintenant ajoutez un bouton permettant de supprimer la saisie.
+
 ### Exercice votes 
 
 Développez l'application votes suivante, vous pouvez utiliser snack.expo. Il y a 4 couples de deux candidats, à chaque fois l'utilisateur doit voter pour un candidat. Une fois tous les votes effectués on affichera les résultats sur une "page" différente. Un bouton reset est prévu pour réinitialiser les votes. Utilisez l'approche fonctionnelle de React ainsi que le Hook **useReducer** pour réaliser cet exercice. Faites deux composants : App et Favorite. Vous pouvez gérer, pour l'instant, le développement de ces deux composants dans le même fichier App.js.
