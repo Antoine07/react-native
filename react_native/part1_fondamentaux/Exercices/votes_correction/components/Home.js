@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import { Favorite } from "./Favorite";
+import  Favorite  from "./Favorite";
 
 import { objectToValues, set_choice } from "../actions/actions-types";
 
@@ -26,6 +26,7 @@ const Home = (props) => {
   if(count < max)
     return (
       <SafeAreaView style={Styles.container}>
+        <Text>{count + 1}</Text>
         <FlatList
           data={objectToValues(candidates[count])}
           renderItem={({ item, index }) => (
@@ -36,13 +37,14 @@ const Home = (props) => {
               <Text style={Styles.btnLabel}>{item}</Text>
             </TouchableOpacity>
           )}
+          keyExtractor={(item, index) => index.toString() }
         />
         <StatusBar style="auto" />
       </SafeAreaView>
     );
 
   return(
-    <p>Hello render</p>
+    <Favorite />
   )
 };
 

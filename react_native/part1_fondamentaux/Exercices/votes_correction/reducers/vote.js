@@ -1,4 +1,4 @@
-import { CHOICE } from "../constants/actions";
+import { CHOICE, RESET } from "../constants/actions";
 
 // source de vérité
 const stateInit = {
@@ -21,9 +21,16 @@ const reducer = (state = stateInit, action) => {
 
       return {
         ...state,
-        choices : state.choices.concat(choice),
+        choices : state.choices.concat({choice, id : state.count + 1 }),
         count  : state.count + 1,
       };
+
+    case RESET:
+      
+    return {
+      ...state, 
+      ...stateInit
+    }
 
     default:
       return state;
