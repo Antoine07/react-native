@@ -427,7 +427,7 @@ Maintenant ajoutez un bouton permettant de supprimer la saisie.
 
 ### Exercice votes 
 
-Développez l'application votes suivante, vous pouvez utiliser snack.expo. Il y a 4 couples de deux candidats, à chaque fois l'utilisateur doit voter pour un candidat. Une fois tous les votes effectués on affichera les résultats sur une "page" différente. Un bouton reset est prévu pour réinitialiser les votes. Utilisez l'approche fonctionnelle de React ainsi que le Hook **useReducer** pour réaliser cet exercice. Faites deux composants : App et Favorite. Vous pouvez gérer, pour l'instant, le développement de ces deux composants dans le même fichier App.js.
+Développez l'application votes suivante, vous pouvez utiliser snack.expo. Il y a 4 couples de deux candidats, à chaque fois l'utilisateur doit voter pour un candidat. Une fois tous les votes effectués on affichera les résultats sur une "page" différente. Un bouton reset est prévu pour réinitialiser les votes. Utilisez l'approche fonctionnelle de React ainsi que les Hooks et Redux pour réaliser cet exercice. Faites deux composants : App et Favorite.
 
 Voyez les wireframes ci-dessous.
 
@@ -486,7 +486,7 @@ Vous utiliserez également le composant **FlatList** il permet de rendre une lis
 |-----------------|
 |   It's Alan     |
 |-----------------|
-|   It' Alice     |
+|   It' Juliette  |
 -------------------
 ```
 
@@ -501,14 +501,29 @@ Puis, on vote pour les 3 restants et on affiche alors le résultat des votes :
 |-----------------|
 |   1. Alan       |
 |   2. Phi        |
-|   3. It' Alice  |
-|   4. It' Lisa   |
+|   3. It' Elise  |
+|   4. It' Alice  |
 -------------------
 | Reset Favorites |
 -------------------
 ```
 
 Le bouton Reset Favorites permettra de réinitialiser les votes. Si on clique dessus dans ce cas ré-afficher la première vue fig 1 ci-dessus.
+
+Indications : on redonne ici la structure des fichiers et dossiers pour l'utilisation de Redux dans le projet :
+
+```text
+actions/
+  actions-types.js <-- export Type & Action sous forme de fonction
+constants/
+  actions.js 
+reducers/
+  votes.js
+```
+
+Pensez à mettre en place la configuration dans le composant App.js
+
+Bon développement.
 
 ## Exercice Navigation School App 3h
 
