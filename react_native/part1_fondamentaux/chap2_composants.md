@@ -518,10 +518,24 @@ actions/
 constants/
   actions.js 
 reducers/
+  index.js
   votes.js
 ```
 
 Pensez à mettre en place la configuration dans le composant App.js
+
+Ajoutez une note de 1 à 10 pour chaque candidat pour lequel vous avez voté. Affichez cette information dans la page Favorite, gérez cette saisie à l'aide d'un select RN.
+
+```text
+-------------------
+| Welcone         |
+| React Native    |
+|-----------------|
+|  It's Alan  [9] |
+|-----------------|
+| It' Juliette [0]|
+-------------------
+```
 
 Bon développement.
 
