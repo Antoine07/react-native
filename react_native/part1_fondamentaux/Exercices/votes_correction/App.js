@@ -1,12 +1,11 @@
 import React from "react";
 
-import votes from "./reducers/votes";
+import rootReducer from "./reducers/index";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-
 import Home from "./components/Home";
 
-const store = createStore(votes);
+const store = createStore(rootReducer);
 
 export default function App() {
   return (
