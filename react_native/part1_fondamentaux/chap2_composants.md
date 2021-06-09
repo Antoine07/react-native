@@ -555,6 +555,35 @@ Dernière page
 
 Bon développement.
 
+
+## Exercice navigation
+
+Créez deux pages :
+
+1. Une page Home 
+
+
+```text
+
+[Home] [counter]
+
+Web App Counter
+
+```
+
+2. Une page pour afficher un counter 
+
+```text
+
+[Home] [counter]
+
+    1
+
+[start] [stop] 
+```
+
+Utilisez la configuration des menus ci-dessous.
+
 ## Exercice Navigation School App 3h
 
 Vous allez créer une application listant des étudiants avec leur nombre d'abscence(s) et les cours qu'ils suivent. Une page présentera tous les cours et une autre permettra d'administrer (ajouter) une abscence dans un premier temps. D'autres options sont à développer et détaillées dans ce qui suit. 
