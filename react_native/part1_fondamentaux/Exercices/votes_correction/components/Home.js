@@ -3,12 +3,10 @@ import Styles from "../Styles";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Text,
-  View,
   StatusBar,
   SafeAreaView,
   FlatList,
   TouchableOpacity,
-  Alert,
 } from "react-native";
 
 import Favorite from "./Favorite";

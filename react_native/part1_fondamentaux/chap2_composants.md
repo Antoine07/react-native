@@ -524,7 +524,7 @@ reducers/
 
 Pensez à mettre en place la configuration dans le composant App.js
 
-Ajoutez une note de 1 à 10 pour chaque candidat pour lequel vous avez voté. Affichez cette information dans la page Favorite, gérez cette saisie à l'aide d'un select RN.
+Ajoutez une note de 1 à 10 pour chaque candidat pour lequel on vote. Affichez cette information dans la page Favorite, gérez cette saisie à l'aide d'un "select" RN. Soignez la présentation des blocs dans le device. Ordonnez les résultats sur la dernière page par ordre de notation.
 
 ```text
 -------------------
@@ -534,6 +534,22 @@ Ajoutez une note de 1 à 10 pour chaque candidat pour lequel vous avez voté. Af
 |  It's Alan  [9] |
 |-----------------|
 | It' Juliette [0]|
+-------------------
+```
+
+Dernière page
+
+```text
+-------------------
+| Welcone         |
+| React Native    |
+|-----------------|
+|   Alice   10    |
+|   Alan   8      |
+|   It' Phi 7     |
+    It' Elise  2  |
+-------------------
+| Reset Favorites |
 -------------------
 ```
 
