@@ -982,14 +982,14 @@ src/
   constants/
     actions.js
   components/
-    
+    ...
   screens/
     AbscenceScreen.js
     HomeScreen.js
     StudentsScreen.js
   reducers/
     school.js
-  styles.js
+  theme.js <-- Paper
 
 App.js
 ```
