@@ -584,11 +584,15 @@ Web App Counter
 
 Utilisez la configuration des menus ci-dessous.
 
-## Exercice Navigation School App 3h
+## Exercice Navigation School 
 
 Vous allez créer une application listant des étudiants avec leur nombre d'abscence(s) et les cours qu'ils suivent. Une page présentera tous les cours et une autre permettra d'administrer (ajouter) une abscence dans un premier temps. D'autres options sont à développer et détaillées dans ce qui suit. 
 
 Nous utiliserons React Native Navigation, pensez à utiliser la documentation officiel : [react native navigation](https://reactnavigation.org/)
+
+Vous utiliserez Redux pour la partie gestion des données.
+
+Et pour la partie graphique de l'application vous utiliserez : Paper. Voir ci-dessous.
 
 Suivez les consignes ci-dessous :
 
@@ -614,6 +618,65 @@ expo install react-native-gesture-handler react-native-reanimated react-native-s
 # yarn add @react-navigation/stack
 
 npm install @react-navigation/stack
+```
+
+3. Mise en place de la partie graphique de l'application
+
+```bash
+npm install react-native-paper
+# Gestion des icons
+npm install react-native-vector-icons
+react-native link react-native-vector-icons
+```
+
+Dans votre fichier babel.config.js, ce fichier se trouve à la racine de votre projet, ajoutez les lignes manquantes suivantes :
+
+```js
+module.exports = function(api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    env: {
+      production: {
+        plugins: ['react-native-paper/babel'],
+      },
+    },
+  };
+};
+```
+
+Installation dans le projet, vous devez dans le fichier App.js écrire les lignes de code suivantes :
+
+```js
+import React from "react";
+
+import rootReducer from "./reducers/index";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
+import Home from "./components/Home";
+
+const store = createStore(rootReducer);
+
+// personnalisation du thème
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: "tomato",
+    accent: "yellow",
+  },
+};
+
+export default function App() {
+  return (
+    <Provider store={store}>
+      <PaperProvider theme={theme}>
+        <Home />
+      </PaperProvider>
+    </Provider>
+  );
+}
 ```
 
 ### Navigation
@@ -685,9 +748,9 @@ export default App;
 
 3. Création des menus de l'application et mise en place des données. Voyez ci-dessous les données à utiliser pour l'exercice. 
 
-Utilisez Redux ou Context API de React pour gérer le store dans l'application.
+Utilisez Redux de React pour gérer le store dans l'application.
 
-- Pour garder les données initiales comme source de vérité vous allez créer une copie de l'objet initalState pour votre reducer. Attention, le spread operator ne peut pas faire une copie d'un objet trop complexe simplement. Pour copier l'objet ci-dessous nous vous proposons une solution voyez ce qui suit :
+- Pour garder les données initiales comme source de vérité vous allez créer des copies du state initalState dans votre reducer. Attention, le spread operator ne peut pas faire une copie profonde. 
 
 
 ```js
@@ -708,8 +771,6 @@ const initialState = {
     order: false
 };
 
-// Copie l'objet initialState dans copyInitialState
-const copyInitialState = JSON.parse(JSON.stringify(initialState));
 ```
 
 ### Firebase
