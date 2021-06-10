@@ -975,12 +975,20 @@ Puis organiser l'application comme suit :
 ```txt
 assets/
 src/
+  nav/
+    Nav.js
+  actions/
+    actions-types.js
+  constants/
+    actions.js
+  components/
+    
   screens/
     AbscenceScreen.js
     HomeScreen.js
     StudentsScreen.js
-  store/
-    SchoolProvider.js
+  reducers/
+    school.js
   styles.js
 
 App.js
