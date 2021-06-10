@@ -571,7 +571,7 @@ Web App Counter
 
 ```
 
-2. Une page pour afficher un counter 
+2. Une page pour afficher un counter avec deux boutons start et stop respectivement pour déclencher et arrêter le compteur
 
 ```text
 
@@ -627,6 +627,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Construction des menus
+// navigation une propriété du module de navigation 
+// props.navigation
 const HomeScreen = ({ navigation })  => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

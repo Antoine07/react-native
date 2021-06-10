@@ -4,8 +4,6 @@ export const initialState = {
   textArray : []
 };
 
-// <Text style={styles.red}>Bonjour</Text> tout <Text style={styles.red}>le</Text>
-
 export const reducer = (state, action) => {
   switch (action.type) {
     case "SET_TEXT":

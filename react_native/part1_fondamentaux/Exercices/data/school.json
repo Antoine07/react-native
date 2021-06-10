@@ -1,0 +1,51 @@
+{
+    "students": {
+        "s1" : 
+        { 
+            "name": "Alice", 
+            "lessons": ["lesson1", "lesson2"], 
+            "attendance": 0, 
+            "notes": [11, 12, 18] , 
+            "url" : "http://lorempixel.com/100/100/cats/1"
+        },
+        "s2" :
+        {  
+            "name": "Alan", 
+            "lessons": ["lesson3"], 
+            "attendance": 0, 
+            "notes": [10, 14.5, 11],
+            "url" : "http://lorempixel.com/100/100/cats/2"
+        },
+        "s3" :
+        {  
+            "name": "Phil", 
+            "lessons": ["lesson1", "lesson2", "lesson3"], 
+            "attendance": 0, 
+            "notes": [11, 9, 9],
+            "url" : "http://lorempixel.com/100/100/cats/2"
+        },
+        "s4" :
+        {  
+            "name": "Naoudi", 
+            "lessons": ["lesson1"], 
+            "attendance": 0, 
+            "notes": [14.5, 19, 18],
+            "url" : "http://lorempixel.com/100/100/cats/3"
+        },
+        "s5" :
+        { 
+            "name": "Fenley", 
+            "lessons": ["lesson3"], 
+            "attendance": 0, 
+            "notes": [9, 7, 11],
+            "url" : "http://lorempixel.com/100/100/cats/4"
+         }
+    },
+    "lessons": {
+        "l1" : {  "title": "React" },
+        "l2" : { "title": "React Native" },
+        "l3" : {  "title": "MongoDB" }
+    },
+    "behaviours" :  [],
+    "order": false
+}
