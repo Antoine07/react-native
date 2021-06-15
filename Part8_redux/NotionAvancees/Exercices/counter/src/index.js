@@ -3,12 +3,33 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
 // Combine Reducer
 import reducer from "./reducers/counter";
 
-const store = createStore(reducer);
+const customMiddleware = store => next => action => {
+  // lire le state avant l'action dispatcher dans le reducer
+  console.log(store.getState());
+
+  const { count } = store.getState();
+
+  if( count === 11 )
+    store.dispatch({ type : "MESSAGE", message : "Je suis a 11" });
+
+  const returnAction = next(action); // après le passage dans le reducer
+
+  console.log(store.getState());
+
+  if( count === 12 )
+    store.dispatch({ type : "MESSAGE", message : "Et maintenant à 12" });
+
+  
+  return returnAction ; // on retourne l'action pour ne pas arrêter le pattern du flux
+}
+
+const store = createStore(reducer, applyMiddleware(customMiddleware));
+
 
 ReactDOM.render(
   <React.StrictMode>

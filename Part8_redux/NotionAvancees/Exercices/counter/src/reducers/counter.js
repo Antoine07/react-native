@@ -1,12 +1,12 @@
-import { ADD_NUMBER } from "../constantes/actions";
+import { ADD_NUMBER, MESSAGE } from "../constantes/actions";
 
 const stateInit = {
-    count : 0
+    count : 0,
+    countA : 0,
+    message : []
 };
 
 const reducer =  (state = stateInit, action = {}) => {
-
-    // gestion des actions du Reducer
     switch(action.type){
         case  ADD_NUMBER:
           
@@ -14,6 +14,14 @@ const reducer =  (state = stateInit, action = {}) => {
                 ...state, 
                 count : state.count + 1
             };
+
+        case MESSAGE:
+            const { message } = action ;
+            return {
+                ...state,
+                message : state.message.concat(message)
+            }
+
 
         default:
             return state;

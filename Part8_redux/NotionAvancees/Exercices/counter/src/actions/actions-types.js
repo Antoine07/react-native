@@ -7,7 +7,6 @@ export const set_counter = () => {
     }
 }
 
-
 let interval;
 
 export const set_counter_async = () =>{
