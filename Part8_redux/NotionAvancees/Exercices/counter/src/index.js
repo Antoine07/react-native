@@ -21,8 +21,8 @@ const customMiddleware = store => next => action => {
 
   console.log(store.getState());
 
-  if( count === 12 && action.type !== "ADD_NUMBER" )
-    store.dispatch({ type : "MESSAGE", message : "Et maintenant à 12" });
+  // if( count === 12 && action.type !== "ADD_NUMBER" )
+  //   store.dispatch({ type : "MESSAGE", message : "Et maintenant à 12" });
 
   
   return returnAction ; // on retourne l'action pour ne pas arrêter le pattern du flux
