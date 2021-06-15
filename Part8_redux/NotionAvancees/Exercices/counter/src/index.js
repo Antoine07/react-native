@@ -14,14 +14,14 @@ const customMiddleware = store => next => action => {
 
   const { count } = store.getState();
 
-  if( count === 11 )
+  if( count === 11 && action.type !== "ADD_NUMBER" )
     store.dispatch({ type : "MESSAGE", message : "Je suis a 11" });
 
   const returnAction = next(action); // après le passage dans le reducer
 
   console.log(store.getState());
 
-  if( count === 12 )
+  if( count === 12 && action.type !== "ADD_NUMBER" )
     store.dispatch({ type : "MESSAGE", message : "Et maintenant à 12" });
 
   

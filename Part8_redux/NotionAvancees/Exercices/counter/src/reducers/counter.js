@@ -3,7 +3,8 @@ import { ADD_NUMBER, MESSAGE } from "../constantes/actions";
 const stateInit = {
     count : 0,
     countA : 0,
-    message : []
+    message : [],
+    status : true
 };
 
 const reducer =  (state = stateInit, action = {}) => {
@@ -12,14 +13,16 @@ const reducer =  (state = stateInit, action = {}) => {
           
             return { 
                 ...state, 
-                count : state.count + 1
+                count : state.count + 1,
+                status : true
             };
 
         case MESSAGE:
             const { message } = action ;
             return {
                 ...state,
-                message : state.message.concat(message)
+                message : state.message.concat(message),
+                status : false
             }
 
 
