@@ -1,6 +1,6 @@
 
 import { useSelector, useDispatch } from 'react-redux';
-import { set_counter } from './actions/actions-types';
+import {  set_counter_async } from './actions/actions-types';
 import './App.css';
 
 
@@ -11,6 +11,9 @@ const App = () => {
   return (
     <div className="App">
       <p>Counter : {count} </p>
+      <div>
+        <button onClick={() => dispatch(set_counter_async())}>Counter Async</button>
+      </div>
     </div>
   );
 }
